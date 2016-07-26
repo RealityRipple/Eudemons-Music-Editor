@@ -601,7 +601,7 @@ Partial Class frmMain
     '
     Me.ntxRangeEdgeNW.Location = New System.Drawing.Point(1, 1)
     Me.ntxRangeEdgeNW.Margin = New System.Windows.Forms.Padding(1)
-    Me.ntxRangeEdgeNW.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
+    Me.ntxRangeEdgeNW.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
     Me.ntxRangeEdgeNW.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
     Me.ntxRangeEdgeNW.Name = "ntxRangeEdgeNW"
     Me.ntxRangeEdgeNW.Size = New System.Drawing.Size(45, 20)
@@ -626,7 +626,7 @@ Partial Class frmMain
     Me.ntxRangeEdgeSE.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
     Me.ntxRangeEdgeSE.Location = New System.Drawing.Point(168, 35)
     Me.ntxRangeEdgeSE.Margin = New System.Windows.Forms.Padding(1)
-    Me.ntxRangeEdgeSE.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
+    Me.ntxRangeEdgeSE.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
     Me.ntxRangeEdgeSE.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
     Me.ntxRangeEdgeSE.Name = "ntxRangeEdgeSE"
     Me.ntxRangeEdgeSE.Size = New System.Drawing.Size(45, 20)
@@ -639,7 +639,7 @@ Partial Class frmMain
     Me.ntxRangeEdgeSW.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
     Me.ntxRangeEdgeSW.Location = New System.Drawing.Point(1, 35)
     Me.ntxRangeEdgeSW.Margin = New System.Windows.Forms.Padding(1)
-    Me.ntxRangeEdgeSW.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
+    Me.ntxRangeEdgeSW.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
     Me.ntxRangeEdgeSW.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
     Me.ntxRangeEdgeSW.Name = "ntxRangeEdgeSW"
     Me.ntxRangeEdgeSW.Size = New System.Drawing.Size(45, 20)
@@ -652,7 +652,7 @@ Partial Class frmMain
     Me.ntxRangeEdgeNE.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
     Me.ntxRangeEdgeNE.Location = New System.Drawing.Point(168, 1)
     Me.ntxRangeEdgeNE.Margin = New System.Windows.Forms.Padding(1)
-    Me.ntxRangeEdgeNE.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
+    Me.ntxRangeEdgeNE.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
     Me.ntxRangeEdgeNE.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
     Me.ntxRangeEdgeNE.Name = "ntxRangeEdgeNE"
     Me.ntxRangeEdgeNE.Size = New System.Drawing.Size(45, 20)
