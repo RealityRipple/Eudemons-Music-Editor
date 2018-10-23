@@ -16,9 +16,16 @@
   Private ThumbSize As Integer
   Private NoSave As Boolean
   Private isClosing As Boolean
+  Private WithEvents cUpdate As clsUpdate
+  Private tUpdate As Threading.Timer
+  Private sUpdate As String = IO.Path.Combine(IO.Path.GetTempPath, "EME_Setup.exe")
 
 #Region "Window Events"
   Private Sub frmMain_Load(sender As Object, e As System.EventArgs) Handles Me.Load
+    If My.Settings.UpgradeSettings Then
+      My.Settings.Upgrade()
+      My.Settings.UpgradeSettings = False
+    End If
     If Command.Contains("/revert") Then
       Revert(Not Command.Contains("/s"))
       End
@@ -1100,5 +1107,80 @@
   Private Sub tmrStart_Tick(sender As System.Object, e As System.EventArgs) Handles tmrStart.Tick
     tmrStart.Enabled = False
     LoadSettings()
+    tUpdate = New Threading.Timer(New Threading.TimerCallback(AddressOf CheckForUpdates), Nothing, 1000, 5000)
   End Sub
+
+#Region "Updates"
+  Private Sub CheckForUpdates(state As Object)
+    If InvokeRequired Then
+      Invoke(New Threading.TimerCallback(AddressOf CheckForUpdates), state)
+      Return
+    End If
+    If tUpdate IsNot Nothing Then
+      tUpdate.Dispose()
+      tUpdate = Nothing
+    Else
+      Return
+    End If
+    If DateDiff(DateInterval.Day, My.Settings.PriorUpdate, Now) > 30 Then
+      cUpdate = New clsUpdate
+      cUpdate.CheckVersion()
+    End If
+  End Sub
+
+  Private Sub cUpdate_CheckResult(sender As Object, e As clsUpdate.CheckEventArgs) Handles cUpdate.CheckResult
+    If InvokeRequired Then
+      Invoke(New EventHandler(Of clsUpdate.CheckEventArgs)(AddressOf cUpdate_CheckResult), sender, e)
+      Return
+    End If
+    If e.Cancelled Then
+
+    ElseIf e.Error IsNot Nothing Then
+
+    Else
+      My.Settings.PriorUpdate = Now
+      My.Settings.Save()
+      If e.Result = clsUpdate.CheckEventArgs.ResultType.NewUpdate Then
+        Using dUpdate As New dlgUpdate(e.Version)
+          If dUpdate.ShowDialog(Me) = Windows.Forms.DialogResult.Cancel Then Return
+        End Using
+        Try
+          If IO.File.Exists(sUpdate) Then IO.File.Delete(sUpdate)
+          cUpdate.DownloadUpdate(sUpdate)
+        Catch ex As Exception
+          MsgBox("There was an error beginning the update process." & vbNewLine & "The Update file is currently in use. Please make sure the update installer is not already running!", MsgBoxStyle.Critical)
+        End Try
+      End If
+    End If
+  End Sub
+
+  Private Sub cUpdate_DownloadResult(sender As Object, e As clsUpdate.DownloadEventArgs) Handles cUpdate.DownloadResult
+    If InvokeRequired Then
+      Invoke(New EventHandler(Of clsUpdate.DownloadEventArgs)(AddressOf cUpdate_DownloadResult), sender, e)
+      Return
+    End If
+    If e.Cancelled Then
+      MsgBox("There was an error during the update process." & vbNewLine & "Downloading the Update file has been canceled.", MsgBoxStyle.Exclamation)
+    ElseIf e.Error IsNot Nothing Then
+      MsgBox("There was an error during the update process." & vbNewLine & "Downloading the Update file has failed.", MsgBoxStyle.Critical)
+    Else
+      If Not Authenticode.IsSelfSigned(sUpdate) Then
+        MsgBox("There was an error during the update process." & vbNewLine & "The Update file is not correctly signed.", MsgBoxStyle.Critical)
+        Return
+      End If
+      Try
+        Dim oProc As New Process
+        oProc.StartInfo.FileName = sUpdate
+        oProc.StartInfo.Arguments = "/silent"
+        oProc.StartInfo.WindowStyle = ProcessWindowStyle.Normal
+        oProc.StartInfo.UseShellExecute = False
+        oProc.Start()
+        Application.Exit()
+      Catch ex As Exception
+        MsgBox("There was an error during the update process." & vbNewLine & "The Installer has failed to start.", MsgBoxStyle.Critical)
+      End Try
+    End If
+  End Sub
+
+#End Region
 End Class
