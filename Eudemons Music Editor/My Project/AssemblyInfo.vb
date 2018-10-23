@@ -12,13 +12,13 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("Eudemons Music Editor is a background music editor for Eudemons Online. All application coding by Andrew Sachen. This application is not endorsed by NetDragon, TQ, or any affiliate companies.")> 
 <Assembly: AssemblyCompany("RealityRipple Software")> 
 <Assembly: AssemblyProduct("Eudemons Music Editor")> 
-<Assembly: AssemblyCopyright("This program is provided 'as is', with no warranty, license, or ownership rights of any kind. It is simply data.")> 
-<Assembly: AssemblyTrademark("This software is free of the ownership-based perspective of humanity. Share and Enjoy.")> 
+<Assembly: AssemblyCopyright("http://realityripple.com/Software/Applications/Eudemons-Music-Editor/")> 
+<Assembly: AssemblyTrademark("Eudemons Music Editor by RealityRipple Software")> 
 
 <Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("1c44bb49-ea3f-4ae4-b000-143e12b3cb1b")> 
+<Assembly: Guid("17DB839A-3689-5F7F-8E6A-E53875E1B94F")> 
 
 ' Version information for an assembly consists of the following four values:
 '
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.0.0.3")> 
-<Assembly: AssemblyFileVersion("1.0.0.3")> 
+<Assembly: AssemblyVersion("1.0.1")> 
+<Assembly: AssemblyFileVersion("1.0.1")> 
