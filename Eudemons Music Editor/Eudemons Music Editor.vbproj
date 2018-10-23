@@ -82,6 +82,9 @@
     <Compile Include="Classes\clsAuthenticode.vb" />
     <Compile Include="Classes\clsBuffer.vb" />
     <Compile Include="Classes\clsINI.vb" />
+    <Compile Include="Classes\clsLinkLabel.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Classes\clsRadioMenu.vb">
       <SubType>Component</SubType>
     </Compile>
