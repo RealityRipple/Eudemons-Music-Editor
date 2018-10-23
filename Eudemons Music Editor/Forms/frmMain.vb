@@ -9,13 +9,13 @@
     End Structure
   End Structure
 
-  Dim MusicInfo() As MusicData
-  Dim bKeepInfo As Boolean
-  Dim bTranslate As Boolean
-  Dim MenuMusic As String
-  Dim ThumbSize As Integer
-  Dim NoSave As Boolean
-  Dim isClosing As Boolean
+  Private MusicInfo() As MusicData
+  Private bKeepInfo As Boolean
+  Private bTranslate As Boolean
+  Private MenuMusic As String
+  Private ThumbSize As Integer
+  Private NoSave As Boolean
+  Private isClosing As Boolean
 
 #Region "Window Events"
   Private Sub frmMain_Load(sender As Object, e As System.EventArgs) Handles Me.Load
