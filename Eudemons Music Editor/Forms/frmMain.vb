@@ -16,6 +16,7 @@
   Private ThumbSize As Integer
   Private NoSave As Boolean
   Private isClosing As Boolean
+  Private cTranslator As Translator
   Private WithEvents cUpdate As clsUpdate
   Private tUpdate As Threading.Timer
   Private sUpdate As String = IO.Path.Combine(IO.Path.GetTempPath, "EME_Setup.exe")
@@ -683,6 +684,7 @@
     cmbMaps.SelectedIndex = 0
     Me.UseWaitCursor = True
     Application.DoEvents()
+    If bTranslate Then PrepareTranslator()
     ReadGameMapINI()
     pctProgress.Visible = False
     pnlMain.Controls.Remove(lblProgress)
@@ -847,6 +849,10 @@
     If Alert Then MsgBox(sMsg, MsgBoxStyle.Information, "Eudemons Music Editor")
   End Sub
 
+  Private Sub PrepareTranslator()
+    cTranslator = New Translator
+  End Sub
+
 #Region "Map List"
   Private Sub SetMapText(sText As String)
     cmbMaps.Text = sText
@@ -896,8 +902,7 @@
             AddToMapList(sName & " [" & sSections(S) & "]")
           Else
             If bTranslate Then
-              Dim trans As New Translator
-              Dim sEng As String = trans.ChineseToEnglish(sChi)
+              Dim sEng As String = cTranslator.ChineseToEnglish(sChi)
               AddToMapList("* " & sEng & " [" & sSections(S) & "]")
             Else
               AddToMapList(sChi & " [" & sSections(S) & "]")
