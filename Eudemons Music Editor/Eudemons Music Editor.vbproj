@@ -79,6 +79,7 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationEvents.vb" />
     <Compile Include="Classes\clsAuthenticode.vb" />
     <Compile Include="Classes\clsBuffer.vb" />
     <Compile Include="Classes\clsINI.vb" />
